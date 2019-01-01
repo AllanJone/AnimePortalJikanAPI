@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -99,9 +102,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -126,23 +126,173 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AnimeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="JikanDecoder\Consts\JikanEndPointCategories.cs" />
+    <Compile Include="JikanDecoder\Enumerations\AgeRating.cs" />
+    <Compile Include="JikanDecoder\Enumerations\AiringStatus.cs" />
+    <Compile Include="JikanDecoder\Enumerations\AnimeExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\AnimeType.cs" />
+    <Compile Include="JikanDecoder\Enumerations\CharacterExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\GenreSearch.cs" />
+    <Compile Include="JikanDecoder\Enumerations\MangaExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\MangaType.cs" />
+    <Compile Include="JikanDecoder\Enumerations\PersonExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\ScheduledDay.cs" />
+    <Compile Include="JikanDecoder\Enumerations\SeasonExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\Seasons.cs" />
+    <Compile Include="JikanDecoder\Enumerations\TopAnimeExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\TopMangaExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\UserAnimeListExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\UserExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\UserHistoryExtension.cs" />
+    <Compile Include="JikanDecoder\Enumerations\UserMangaListExtension.cs" />
+    <Compile Include="JikanDecoder\Exceptions\JikanRequestException.cs" />
+    <Compile Include="JikanDecoder\Extensions\EnumExtensions.cs" />
+    <Compile Include="JikanDecoder\Helpers\HttpProvider.cs" />
+    <Compile Include="JikanDecoder\Interfaces\IJikan.cs" />
+    <Compile Include="JikanDecoder\Interfaces\IMalEntity.cs" />
+    <Compile Include="JikanDecoder\Interfaces\ISearchConfig.cs" />
+    <Compile Include="JikanDecoder\Jikan.cs" />
+    <Compile Include="JikanDecoder\Model\Core\Anime.cs" />
+    <Compile Include="JikanDecoder\Model\Core\AnimeCharactersStaff.cs" />
+    <Compile Include="JikanDecoder\Model\Core\AnimeEpisodes.cs" />
+    <Compile Include="JikanDecoder\Model\Core\AnimeGenre.cs" />
+    <Compile Include="JikanDecoder\Model\Core\AnimeNews.cs" />
+    <Compile Include="JikanDecoder\Model\Core\AnimePictures.cs" />
+    <Compile Include="JikanDecoder\Model\Core\AnimeStats.cs" />
+    <Compile Include="JikanDecoder\Model\Core\AnimeTop.cs" />
+    <Compile Include="JikanDecoder\Model\Core\AnimeVideos.cs" />
+    <Compile Include="JikanDecoder\Model\Core\Character.cs" />
+    <Compile Include="JikanDecoder\Model\Core\CharacterPictures.cs" />
+    <Compile Include="JikanDecoder\Model\Core\CharactersTop.cs" />
+    <Compile Include="JikanDecoder\Model\Core\ForumTopics.cs" />
+    <Compile Include="JikanDecoder\Model\Core\Magazine.cs" />
+    <Compile Include="JikanDecoder\Model\Core\Manga.cs" />
+    <Compile Include="JikanDecoder\Model\Core\MangaCharacters.cs" />
+    <Compile Include="JikanDecoder\Model\Core\MangaGenre.cs" />
+    <Compile Include="JikanDecoder\Model\Core\MangaNews.cs" />
+    <Compile Include="JikanDecoder\Model\Core\MangaPictures.cs" />
+    <Compile Include="JikanDecoder\Model\Core\MangaStats.cs" />
+    <Compile Include="JikanDecoder\Model\Core\MangaTop.cs" />
+    <Compile Include="JikanDecoder\Model\Core\MoreInfo.cs" />
+    <Compile Include="JikanDecoder\Model\Core\PeopleTop.cs" />
+    <Compile Include="JikanDecoder\Model\Core\Person.cs" />
+    <Compile Include="JikanDecoder\Model\Core\PersonPictures.cs" />
+    <Compile Include="JikanDecoder\Model\Core\Producer.cs" />
+    <Compile Include="JikanDecoder\Model\Core\Schedule.cs" />
+    <Compile Include="JikanDecoder\Model\Core\Season.cs" />
+    <Compile Include="JikanDecoder\Model\Core\SeasonArchives.cs" />
+    <Compile Include="JikanDecoder\Model\Core\StatusMetadata.cs" />
+    <Compile Include="JikanDecoder\Model\Core\UserAnimeList.cs" />
+    <Compile Include="JikanDecoder\Model\Core\UserFriends.cs" />
+    <Compile Include="JikanDecoder\Model\Core\UserHistory.cs" />
+    <Compile Include="JikanDecoder\Model\Core\UserMangaList.cs" />
+    <Compile Include="JikanDecoder\Model\Core\UserProfile.cs" />
+    <Compile Include="JikanDecoder\Model\Search\AnimeSearchConfig.cs" />
+    <Compile Include="JikanDecoder\Model\Search\AnimeSearchEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Search\AnimeSearchResult.cs" />
+    <Compile Include="JikanDecoder\Model\Search\CharacterSearchEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Search\CharacterSearchResult.cs" />
+    <Compile Include="JikanDecoder\Model\Search\MangaSearchConfig.cs" />
+    <Compile Include="JikanDecoder\Model\Search\MangaSearchEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Search\MangaSearchResult.cs" />
+    <Compile Include="JikanDecoder\Model\Search\PersonSearchEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Search\PersonSearchResult.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\AnimeEpisode.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\AnimeListEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\AnimeStaffPosition.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\AnimeSubEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\AnimeTopEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\CharacterEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\CharacterTopEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\EpisodeVideo.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\ForumPostSnippet.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\ForumTopic.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\Friend.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\HistoryEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\Licensor.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\MALImageSubItem.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\MALSubItem.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\MangaListEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\MangaSubEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\MangaTopEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\News.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\PersonTopEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\Picture.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\PromoVideo.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\PublishedManga.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\RelatedAnime.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\RelatedManga.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\ScoringStatEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\ScoringStats.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\SeasonArchive.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\Seasons.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\StaffPositionEntry.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\TimePeriod.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\UserFavoritesSection.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\UserMangaStatistics.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\UsersAnimeStatistics.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\VoiceActingRole.cs" />
+    <Compile Include="JikanDecoder\Model\Secondary\VoiceActorEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\scss-files.txt" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\img\about-bg.jpg" />
+    <Content Include="Content\img\anime-girl-falling-stars.jpg" />
+    <Content Include="Content\img\anime-girl.jpg" />
+    <Content Include="Content\img\fragments.jpg" />
+    <Content Include="Content\img\one-piece.jpg" />
+    <Content Include="Content\img\ruby-rose.jpg" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\lib\animate\animate.css" />
+    <Content Include="Content\lib\animate\animate.min.css" />
+    <Content Include="Content\lib\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\lib\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\lib\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\lib\easing\easing.js" />
+    <Content Include="Content\lib\easing\easing.min.js" />
+    <Content Include="Content\lib\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\lib\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\lib\jquery\jquery-migrate.min.js" />
+    <Content Include="Content\lib\jquery\jquery.min.js" />
+    <Content Include="Content\lib\owlcarousel\assets\ajax-loader.gif" />
+    <Content Include="Content\lib\owlcarousel\assets\owl.carousel.css" />
+    <Content Include="Content\lib\owlcarousel\assets\owl.carousel.min.css" />
+    <Content Include="Content\lib\owlcarousel\assets\owl.theme.default.css" />
+    <Content Include="Content\lib\owlcarousel\assets\owl.theme.default.min.css" />
+    <Content Include="Content\lib\owlcarousel\assets\owl.theme.green.css" />
+    <Content Include="Content\lib\owlcarousel\assets\owl.theme.green.min.css" />
+    <Content Include="Content\lib\owlcarousel\assets\owl.video.play.png" />
+    <Content Include="Content\lib\owlcarousel\owl.carousel.js" />
+    <Content Include="Content\lib\owlcarousel\owl.carousel.min.js" />
+    <Content Include="Content\lib\superfish\hoverIntent.js" />
+    <Content Include="Content\lib\superfish\superfish.js" />
+    <Content Include="Content\lib\superfish\superfish.min.js" />
+    <Content Include="Content\lib\venobox\venobox.css" />
+    <Content Include="Content\lib\venobox\venobox.js" />
+    <Content Include="Content\lib\venobox\venobox.min.js" />
+    <Content Include="Content\lib\wow\wow.js" />
+    <Content Include="Content\lib\wow\wow.min.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\lib\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\lib\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\lib\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\lib\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\lib\owlcarousel\LICENSE" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -162,12 +312,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_HeaderBeforeLogin.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Anime\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -178,10 +330,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />

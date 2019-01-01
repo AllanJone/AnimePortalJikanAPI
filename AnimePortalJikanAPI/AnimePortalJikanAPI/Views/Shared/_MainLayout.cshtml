@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="@Url.Content("~/favicon.ico")" rel="icon">
+    <link href="@Url.Content("~/Content/img/apple-touch-icon.png")" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="@Url.Content("~/Content/lib/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="@Url.Content("~/Content/lib/font-awesome/css/font-awesome.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/lib/animate/animate.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/lib/venobox/venobox.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/lib/owlcarousel/assets/owl.carousel.min.css")" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet">
+</head>
+<body>
+
+    @{
+        Html.RenderPartial("_HeaderBeforeLogin");
+    }
+
+    <!--==========================
+      Intro Section
+    ============================-->
+    <section id="intro">
+        <div class="intro-container wow fadeIn">
+            <h1 class="mb-4 pb-0">The Anime Portal<br><span>MyAnimeList</span> </h1>
+            <p class="mb-4 pb-0">Discover more about the world of anime and manga now!</p>
+            <a href="https://www.youtube.com/watch?v=-nY0hvNOR_U" class="venobox play-btn mb-4" data-vbtype="video"
+               data-autoplay="true"></a>
+            <a href="#about" class="about-btn scrollto">About The Site</a>
+        </div>
+    </section>
+
+    <!--==========================
+      About Section
+    ============================-->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>About The Site</h2>
+                    <p>This site provides its users with a list-like system to organize and score anime and manga developed using jikan api connecting to MyAnimeList</p>
+                </div>
+                <div class="col-lg-3">
+                    <h3>What have you watched?</h3>
+                    <p>Create your personalized list from tens of thousands of titles on the world’s largest anime and manga database.</p>
+                </div>
+                <div class="col-lg-3">
+                    <h3>Need to stay up to date?</h3>
+                    <p>Use your list to organize and track what titles you’ve completed, your current progress, what you plan to watch or read and so much more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--==========================
+      Body Section
+    ============================-->
+    <section class="section-with-bg">
+        @RenderBody()
+    </section><!-- #body -->
+
+    @{
+        Html.RenderPartial("_Footer");
+    }
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="@Url.Content("~/Content/lib/jquery/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/jquery/jquery-migrate.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/easing/easing.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/superfish/hoverIntent.js")"></script>
+    <script src="@Url.Content("~/Content/lib/superfish/superfish.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/wow/wow.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/venobox/venobox.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/owlcarousel/owl.carousel.min.js")"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="@Url.Content("~/Content/js/main.js")"></script>
+</body>
+</html>

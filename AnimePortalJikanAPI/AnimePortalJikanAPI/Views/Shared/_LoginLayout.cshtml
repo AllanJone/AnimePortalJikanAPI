@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="@Url.Content("~/favicon.ico")" rel="icon">
+    <link href="@Url.Content("~/Content/img/apple-touch-icon.png")" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="@Url.Content("~/Content/lib/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="@Url.Content("~/Content/lib/font-awesome/css/font-awesome.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/lib/animate/animate.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/lib/venobox/venobox.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/lib/owlcarousel/assets/owl.carousel.min.css")" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet">
+</head>
+<body>
+
+    @{
+        Html.RenderPartial("_HeaderBeforeLogin");
+    }
+
+    <!--==========================
+      Body Section
+    ============================-->
+    <section class="section-with-bg-top">
+        @RenderBody()
+    </section><!-- #body -->
+
+    @{
+        Html.RenderPartial("_Footer");
+    }
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="@Url.Content("~/Content/lib/jquery/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/jquery/jquery-migrate.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/easing/easing.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/superfish/hoverIntent.js")"></script>
+    <script src="@Url.Content("~/Content/lib/superfish/superfish.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/wow/wow.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/venobox/venobox.min.js")"></script>
+    <script src="@Url.Content("~/Content/lib/owlcarousel/owl.carousel.min.js")"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="@Url.Content("~/Content/js/main.js")"></script>
+</body>
+</html>
