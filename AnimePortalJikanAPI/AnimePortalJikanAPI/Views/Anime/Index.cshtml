@@ -19,7 +19,7 @@
                     <div class="speaker">
                         <img src="@Html.DisplayFor(modelItem => item.ImageURL)" alt="@Html.DisplayFor(modelItem => item.MalId)" class="img-fluid" style="width:225px;height:350px;">
                         <div class="details">
-                            <h3><a href="@Html.DisplayFor(modelItem => item.Url)">@Html.DisplayFor(modelItem => item.Title)</a></h3>
+                            <h3><a href="@Url.Action("Details", "Anime", new { id = Html.DisplayFor(modelItem => item.MalId) })">@Html.DisplayFor(modelItem => item.Title)</a></h3>
                             <p>@Html.DisplayFor(modelItem => item.Type)</p>
                         </div>
                     </div>
