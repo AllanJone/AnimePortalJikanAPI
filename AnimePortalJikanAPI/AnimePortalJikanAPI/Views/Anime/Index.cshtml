@@ -15,17 +15,21 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                <div class="col-lg-3">
-                    <div class="speaker">
-                        <img src="@Html.DisplayFor(modelItem => item.ImageURL)" alt="@Html.DisplayFor(modelItem => item.MalId)" class="img-fluid" style="width:225px;height:350px;">
-                        <div class="details">
-                            <h3><a href="@Url.Action("Details", "Anime", new { id = Html.DisplayFor(modelItem => item.MalId) })">@Html.DisplayFor(modelItem => item.Title)</a></h3>
-                            <p>@Html.DisplayFor(modelItem => item.Type)</p>
+                <div class="col-md-3">
+                    <div class="card mb-3 shadow-sm">
+                        <img class="bd-placeholder-img card-img-top img-fluid" src="@Html.DisplayFor(modelItem => item.ImageURL)" alt="@Html.DisplayFor(modelItem => item.Title)">
+                        <div class="card-body">
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Title)</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-danger" href="@Url.Action("Details", "Anime", new { id = Html.DisplayFor(modelItem => item.MalId) })">View</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             }
-            </div>
+        </div>
     </div>
 
 </section>
